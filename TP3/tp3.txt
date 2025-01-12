@@ -177,3 +177,62 @@ PC1> ping 8.8.8.8
 84 bytes from 8.8.8.8 icmp_seq=3 ttl=112 time=30.643 ms
 
 
+Partie III : Services dans le LAN
+
+1. DHCP
+🌞 Prouvez avec un VPCS
+PC3> ip dhcp
+DDORA IP 10.3.2.10/24 GW 10.3.2.254
+
+PC3> show ip
+
+NAME        : PC3[1]
+IP/MASK     : 10.3.2.10/24
+GATEWAY     : 10.3.2.254
+DNS         : 1.1.1.1
+DHCP SERVER : 10.3.2.253
+DHCP LEASE  : 43184, 43200/21600/37800
+MAC         : 00:50:79:66:22:45
+LPORT       : 10018
+RHOST:PORT  : 127.0.0.1:10019
+MTU:        : 1500
+
+PC3> ping efrei.fr
+efrei.fr resolved to 51.255.68.208
+84 bytes from 51.255.68.208 icmp_seq=1 ttl=127 time=43.412 ms
+84 bytes from 51.255.68.208 icmp_seq=2 ttl=127 time=44.713 ms
+84 bytes from 51.255.68.208 icmp_seq=3 ttl=127 time=45.453 ms
+84 bytes from 51.255.68.208 icmp_seq=4 ttl=127 time=46.588 ms
+84 bytes from 51.255.68.208 icmp_seq=5 ttl=127 time=43.600 ms
+
+2. DNS
+
+🌞 Tests résolutions DNS
+
+PC3> ping dns.tp3.b2
+dns.tp3.b2 resolved to 10.3.3.1
+84 bytes from 10.3.3.1 icmp_seq=1 ttl=63 time=19.249 ms
+84 bytes from 10.3.3.1 icmp_seq=2 ttl=63 time=18.456 ms
+84 bytes from 10.3.3.1 icmp_seq=3 ttl=63 time=19.675 ms
+84 bytes from 10.3.3.1 icmp_seq=4 ttl=63 time=20.475 ms
+84 bytes from 10.3.3.1 icmp_seq=5 ttl=63 time=20.705 ms
+
+PC3> ping efrei.fr
+efrei.fr resolved to 51.255.68.208
+84 bytes from 51.255.68.208 icmp_seq=1 ttl=127 time=51.645 ms
+84 bytes from 51.255.68.208 icmp_seq=2 ttl=127 time=45.195 ms
+84 bytes from 51.255.68.208 icmp_seq=3 ttl=127 time=45.012 ms
+84 bytes from 51.255.68.208 icmp_seq=4 ttl=127 time=43.475 ms
+84 bytes from 51.255.68.208 icmp_seq=5 ttl=127 time=51.427 ms
+
+3. HTTP
+🌞 Preuve avec un client
+
+$ curl http://web.tp3.b2                                       
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>HTTP Server Test Page powered by: Rocky Linux</title>
+    <style type="text/css">
